@@ -3,6 +3,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import * as commentActionsFromOtherFile from '../../actions/comment'
+import Star from '../../components/star'
 
 
 import pic from '../../static/pic/2.jpg'
@@ -17,6 +18,7 @@ class OrderList extends React.Component {
             hasComment: false,
             commentInfo: "",
             commentState: 0, //0-未评价 1-已评价
+            stars: 0
         }
     }
 
@@ -32,7 +34,10 @@ class OrderList extends React.Component {
                         <p>数量：{orderListData.count}</p>
                         {
                             this.state.commentInfo ?
-                                <p>评价：{this.state.commentInfo}</p>
+                                <div>
+                                    <p>评价：{this.state.commentInfo}</p>
+                                    <Star starNO={this.state.stars} showStar={this.showStar.bind(this)}/>
+                                </div>
                                 : ""
                         }
                     </div>
@@ -40,7 +45,7 @@ class OrderList extends React.Component {
                         {
                             this.state.commentState === 1
                                 ? <button onClick={this.commentHandle.bind(this)}>
-                                    已评价</button>
+                                已评价</button>
                                 : <button onClick={this.commentHandle.bind(this)}>
                                 评价</button>
                         }
@@ -51,6 +56,7 @@ class OrderList extends React.Component {
                         <div className="comment-write">
                             <textarea rows="5" ref="commentValue"></textarea>
                         </div>
+                        <Star starNO={this.state.stars} showStar={this.showStar.bind(this)}/>
                         <div className="comment-button">
                             <button className="comment-submit" onClick={this.submitComment.bind(this)}>提交</button>
                             <button className="comment-cancel" onClick={this.cancelComment.bind(this)}>取消</button>
@@ -67,6 +73,12 @@ class OrderList extends React.Component {
         this.showComment();
     }
 
+    showStar(star) {
+        this.setState({
+            stars: star
+        })
+    }
+
     showComment() {
         const userComment = this.props.userComment;
         if (userComment.length > 0) {
@@ -74,7 +86,8 @@ class OrderList extends React.Component {
                 if (userComment[i].title === this.props.data.title) {
                     this.setState({
                         commentInfo: userComment[i].comment,
-                        commentState:1,
+                        commentState: 1,
+                        stars:userComment[i].stars,
                     })
                 }
             }
@@ -90,17 +103,19 @@ class OrderList extends React.Component {
     submitComment() {
         const commentValue = this.refs.commentValue;
         const commentActions = this.props.commentActions;
-        if(this.state.commentState===0){
+        if (this.state.commentState === 0) {
             commentActions.add({
                 comment: commentValue.value,
                 title: this.props.data.title,
                 commentState: 1,
+                stars: this.state.stars
             })
-        }else if(this.state.commentState===1){
+        } else if (this.state.commentState === 1) {
             commentActions.update({
                 comment: commentValue.value,
                 title: this.props.data.title,
                 commentState: 1,
+                stars: this.state.stars
             })
         }
         this.showComment();
