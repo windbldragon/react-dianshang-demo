@@ -39,10 +39,10 @@ class User extends React.Component {
     componentDidMount() {
         const username = this.props.username.phone;
         const password=this.props.username.password;
-        // if(!username||!password){
-        //     hashHistory.push('/login');
-        //     return;
-        // }
+        if(!username||!password){
+            hashHistory.push('/login');
+            return;
+        }
         const result = getOrderListData(username);
         this.resultHandle(result);
     }
