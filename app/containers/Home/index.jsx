@@ -9,6 +9,7 @@ import {connect} from 'react-redux'
 import * as userInfoActionsFromOtherFile from '../../actions/userinfo'
 import LocalStore from '../../util/localStore'
 import {CITYNAME} from '../../config/LocalStoreKey'
+import SelectDemo from '../../components/Select'
 
 
 class Home extends React.Component {
@@ -22,6 +23,7 @@ class Home extends React.Component {
             <div>
                 <Header cityName={this.props.userinfo.cityName}></Header>
                 <Category/>
+                {/*<SelectDemo/>*/}
                 <div style={{height: '15px'}}></div>
                 <Ad/>
                 <div style={{height: '15px'}}></div>
