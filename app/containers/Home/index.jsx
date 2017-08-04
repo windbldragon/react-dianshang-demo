@@ -26,6 +26,7 @@ class Home extends React.Component {
                 {/*<SelectDemo/>*/}
                 <div style={{height: '15px'}}></div>
                 <Ad/>
+                <div>test</div>
                 <div style={{height: '15px'}}></div>
                 <Recommend/>
             </div>
