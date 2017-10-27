@@ -8,6 +8,7 @@ import pic2 from '../../../static/pic/2.jpg'
 import pic3 from '../../../static/pic/3.jpg'
 import pic4 from '../../../static/pic/4.jpg'
 import pic5 from '../../../static/pic/5.jpg'
+import {hashHistory} from 'react-router'
 
 
 class Recommend extends React.Component {
@@ -25,7 +26,7 @@ class Recommend extends React.Component {
     render() {
         return (
             <div>
-                <div>推荐</div>
+                <div onClick={this.goTest.bind(this)}>推荐</div>
                 {/*<div>{this.state.hasMore.toString()}</div>*/}
                 {/*<div>{this.state.listInfo.length}</div>*/}
                 {
@@ -86,6 +87,10 @@ class Recommend extends React.Component {
         }).catch((error) => {
             alert(error)
         })
+    }
+
+    goTest(){
+        hashHistory.push('/testComponentDidUpdate')
     }
 }
 

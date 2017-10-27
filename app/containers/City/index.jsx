@@ -22,7 +22,7 @@ class City extends React.Component {
             '西安', '咸阳', '佳木斯',
             '大连', '沈阳', '哈尔滨',
             '大理', '杭州', '深圳',
-        ]
+        ];
         return (
             <div>
                 <ComponentHeader headTitle="选择城市"/>
@@ -47,7 +47,7 @@ class City extends React.Component {
     getValue(city){
         if(city){
             LocalStore.setItem(CITYNAME,city);
-            hashHistory.push('/')
+            hashHistory.push('/');
         }
     }
 }

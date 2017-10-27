@@ -14,7 +14,7 @@ class DetailInfoTop extends React.Component {
         const detailInfo = this.props.data;
         return (
             <div className="detailInfoTop-top">
-                <div className="detailInfoTop-main">
+                <div className="detailInfoTop-main">;
                     <img className="detailInfoTop-img" src={pic} alt="图片"/>
                     <div className="detailInfoTop-info">
                         <p style={{color:'grey'}}>{detailInfo.title}</p>

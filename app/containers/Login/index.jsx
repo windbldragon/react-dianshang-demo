@@ -48,14 +48,14 @@ class Login extends React.Component {
         const usernameActions = this.props.usernameActions
         usernameActions.updata({
             phone:phone,
-            password:password
+            password:password,
         });
         alert('登陆成功');
         if(this.props.params.route){
             if(this.props.params.id){
                 hashHistory.push('/'+this.props.params.route+'/'+this.props.params.id)
             }else {
-                hashHistory.push('/'+this.props.params.route)
+                hashHistory.push('/'+this.props.params.route);
             }
         }else {
             hashHistory.push('/')

@@ -1,6 +1,7 @@
 import React from 'react'
 import PureRenderMixin from 'react-addons-pure-render-mixin'
 import ReactSwipe from 'react-swipe'
+import {hashHistory} from 'react-router'
 
 import './style.less'
 
@@ -32,7 +33,7 @@ class Category extends React.Component {
                 <ReactSwipe className="carousel" swipeOptions={opt}>
                     <div>
                         <ul className="main">
-                            <li className="img">火影</li>
+                            <li className="img" onClick={this.goHuoYing.bind(this)}>火影</li>
                             <li className="img">火影</li>
                             <li className="img">火影</li>
                             <li className="img">火影</li>
@@ -80,6 +81,9 @@ class Category extends React.Component {
                 </div>
             </div>
         )
+    }
+    goHuoYing(){
+        hashHistory.push('huoying')
     }
 
 }
